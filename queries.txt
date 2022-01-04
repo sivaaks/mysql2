@@ -1,0 +1,14 @@
+CREATE DATABASE zen_class;
+
+CREATE TABLE student (id int(10) PRIMARY KEY,name varchar(30) UNIQUE, email varchar(50) NOT NULL, phone numeric(10), batch varchar(5), qualification varchar(50), year_of_passing int(4), 
+experience int(1),portfolio varchar(100),github varchar(100));
+
+CREATE TABLE batch (id int(10) PRIMARY KEY,name varchar(30) UNIQUE, start_date date,end_date date, type varchar(10) NOT NULL, subject varchar(50),classes int(2), 
+time timestamp, url varchar(100));
+
+CREATE TABLE task (id int(10) PRIMARY KEY, task_date date,submitted boolean,url varchar(100),student_id int(10),
+CONSTRAINT student_id FOREIGN KEY(student_id) REFERENCES student(id));
+
+CREATE TABLE mentor (id int(10) PRIMARY KEY,name varchar(30) UNIQUE, email varchar(50) NOT NULL, phone numeric(10), batch varchar(5), qualification varchar(50),
+subject varchar(100) NOT NULL, CONSTRAINT batch FOREIGN KEY(batch) REFERENCES batch(name));
+
